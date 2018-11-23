@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tal.dao.SysRolePerMapper" >
+  <resultMap id="BaseResultMap" type="com.tal.pojo.SysRolePer" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="pid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="rid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="operator" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="operatetime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="operateip" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, pid, rid, operator, operatetime, operateip
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_per_role
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_per_role
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tal.pojo.SysRolePer" >
+    insert into sys_per_role (id, pid, rid, 
+      operator, operatetime, operateip
+      )
+    values (#{id,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{rid,jdbcType=INTEGER}, 
+      #{operator,jdbcType=VARCHAR}, #{operatetime,jdbcType=TIMESTAMP}, #{operateip,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tal.pojo.SysRolePer" >
+    insert into sys_per_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="rid != null" >
+        rid,
+      </if>
+      <if test="operator != null" >
+        operator,
+      </if>
+      <if test="operatetime != null" >
+        operatetime,
+      </if>
+      <if test="operateip != null" >
+        operateip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="rid != null" >
+        #{rid,jdbcType=INTEGER},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatetime != null" >
+        #{operatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operateip != null" >
+        #{operateip,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tal.pojo.SysRolePer" >
+    update sys_per_role
+    <set >
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="rid != null" >
+        rid = #{rid,jdbcType=INTEGER},
+      </if>
+      <if test="operator != null" >
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatetime != null" >
+        operatetime = #{operatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operateip != null" >
+        operateip = #{operateip,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tal.pojo.SysRolePer" >
+    update sys_per_role
+    set pid = #{pid,jdbcType=INTEGER},
+      rid = #{rid,jdbcType=INTEGER},
+      operator = #{operator,jdbcType=VARCHAR},
+      operatetime = #{operatetime,jdbcType=TIMESTAMP},
+      operateip = #{operateip,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

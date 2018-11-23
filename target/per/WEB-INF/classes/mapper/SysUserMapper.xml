@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tal.dao.SysUserMapper" >
+  <resultMap id="BaseResultMap" type="com.tal.pojo.SysUser" >
+    <constructor >
+      <idArg column="uid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="parentid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="password" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="operator" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="operatetime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="operateip" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="seq" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="level" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    uid, parentid, name, password, status, operator, operatetime, operateip, seq, level
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where uid = #{uid,jdbcType=INTEGER}
+  </select>
+  <select id="getAlluser" resultMap="BaseResultMap"  >
+    select
+    <include refid="Base_Column_List" />
+    from sys_user
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_user
+    where uid = #{uid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tal.pojo.SysUser" >
+    insert into sys_user (uid, parentid, name, 
+      password, status, operator, 
+      operatetime, operateip, seq, 
+      level)
+    values (#{uid,jdbcType=INTEGER}, #{parentid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{operator,jdbcType=VARCHAR}, 
+      #{operatetime,jdbcType=TIMESTAMP}, #{operateip,jdbcType=VARCHAR}, #{seq,jdbcType=INTEGER}, 
+      #{level,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tal.pojo.SysUser" >
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="parentid != null" >
+        parentid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="operator != null" >
+        operator,
+      </if>
+      <if test="operatetime != null" >
+        operatetime,
+      </if>
+      <if test="operateip != null" >
+        operateip,
+      </if>
+      <if test="seq != null" >
+        seq,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatetime != null" >
+        #{operatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operateip != null" >
+        #{operateip,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null" >
+        #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tal.pojo.SysUser" >
+    update sys_user
+    <set >
+      <if test="parentid != null" >
+        parentid = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="operator != null" >
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatetime != null" >
+        operatetime = #{operatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operateip != null" >
+        operateip = #{operateip,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null" >
+        seq = #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tal.pojo.SysUser" >
+    update sys_user
+    set parentid = #{parentid,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      operator = #{operator,jdbcType=VARCHAR},
+      operatetime = #{operatetime,jdbcType=TIMESTAMP},
+      operateip = #{operateip,jdbcType=VARCHAR},
+      seq = #{seq,jdbcType=INTEGER},
+      level = #{level,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <select id="countByNameAndParentId" parameterType="map" resultType="int">
+    SELECT count(1)
+    FROM sys_user
+    WHERE name = #{name}
+    <if test="parentid != null">
+      AND parentid = #{parentid}
+    </if>
+
+    <if test="uid != null">
+      AND uid != #{uid}
+    </if>
+  </select>
+  <select id="getChildDeptListByLevel" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_user
+    WHERE level like #{level} || '.%'
+  </select>
+  <update id="batchUpdateLevel" parameterType="map">
+    <foreach collection="sysUserList" item="sysUser" separator=";">
+      UPDATE sys_user
+      SET level = #{user.level}
+      WHERE uid = #{user.uid}
+    </foreach>
+  </update>
+  <select id="findByKeyword" parameterType="string" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM sys_user
+    WHERE name = #{keyword}
+
+  </select>
+
+</mapper>
